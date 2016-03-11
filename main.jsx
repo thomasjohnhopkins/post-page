@@ -1,14 +1,20 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var MyComponent = React.createClass({
+var Post = require('./components/post');
+var Preview = require('./components/preview');
+var PostList = require('./components/postList');
+
+var Main = React.createClass({
   render: function () {
     return(
-      <div className="title">Hello World</div>
+      <div className="title">
+        <Post />
+      </div>
     );
   }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  ReactDOM.render(<MyComponent />, document.getElementById('main'));
+  ReactDOM.render(<Main />, document.getElementById('main'));
 });
