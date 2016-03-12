@@ -1,4 +1,55 @@
-.title {
-  color: blue;
-  background: red;
+html, body, main, div, p, form, ul, i,
+input, h2, label, textarea {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  box-sizing: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+body {
+  box-sizing: content-box;
+  font-family: 'Raleway', Arial;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.1666666666;
+  background: #fff;
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 10px;
+}
+
+label.post {
+  margin: 10px;
+  display: block;
+}
+
+input {
+  margin: 10px;
+  display: block;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: 400px;
+}
+
+textarea {
+  margin: 10px;
+  display: block;
+  width: 400px;
+  height: 200px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }

@@ -1,11 +1,29 @@
 var React= require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var PostActions = require('../actions/post_actions');
 
 var Post = React.createClass({
   mixins: [LinkedStateMixin],
 
   getInitialState: function () {
-    return ({title: '', body: ''});
+    return ({title: "", body: ""});
+  },
+
+  signUp: function(e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    formData.append("post[title]", this.state.title);
+    formData.append("post[body]", this.state.body);
+
+    PostActions.addPost(formData);
+
+    this.clearForm(e);
+  },
+
+  clearForm: function(e) {
+    this.setState({title: "", body: ""});
   },
 
   render: function () {
@@ -14,14 +32,16 @@ var Post = React.createClass({
       <div>
 
         <h2>Write a post!</h2>
-        <form className="form-session group" onSubmit={this.logIn}>
-          <label>Title</label>
-          <input type="text"
+        <form className="form-post" onSubmit={this.addPost}>
+          <label className="post">Title</label>
+          <input type="text" className="title"
             valueLink={this.linkState("title")} />
 
-          <label>Content</label>
-            <input type="text"
-              valueLink={this.linkState("body")} />
+          <label className="post">Content</label>
+            <textarea className="body"
+              valueLink={this.linkState("body")}>
+
+            </textarea>
 
           <ul className="form-buttons group">
             <li className="post-button">
