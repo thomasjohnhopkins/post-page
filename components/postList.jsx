@@ -1,5 +1,8 @@
 var React= require('react');
 
+var PostStore = require('../stores/post');
+var PostActions = require('../actions/post_actions');
+
 var PostList = React.createClass({
   getInitialState: function () {
     return this.getStateFromStore();
@@ -13,7 +16,7 @@ var PostList = React.createClass({
 
   componentDidMount: function () {
     this.listenerToken = PostStore.addListener(this._onChange);
-    apiUtils.fetchAllPosts();
+    PostActions.fetchPosts();
   },
 
   componentWillUnmount: function () {
@@ -33,16 +36,22 @@ var PostList = React.createClass({
     var allPosts = [];
 
     if (this.state !== null) {
+      debugger
       this.state.posts.forEach( function (post) {
 
         allPosts.push(<li className="post-list-item" key={post.title}>
-        <PostListItem post={post} />
+        <h2>{post.title}</h2>
+        <p className="post-body">{post.body}</p>
       </li>);
       }
     )};
 
     return(
-      <div className="post">
+      <div className="post-component">
+        <h1>POSTS</h1>
+        <ul className="posts">
+          {allPosts}
+        </ul>
       </div>
     );
   }

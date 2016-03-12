@@ -15,6 +15,9 @@ var addPost = function (post) {
 };
 
 PostStore.all = function () {
+  if (_posts === undefined) {
+    _posts = [];
+  }
   return _posts.slice(0);
 };
 

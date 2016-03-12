@@ -2,17 +2,16 @@ var AppDispatcher = require('../dispatcher/app_dispatcher.js');
 var PostConstants = require('../constants/post_constants');
 
 PostActions = {
-  addPost: function (post) {
+  addPost: function (title, body) {
     AppDispatcher.dispatch({
       actionType: PostConstants.ADD_POST,
-      post: post
+      post: {title: title, body: body}
     });
   },
 
-  fetchPosts: function (posts) {
+  fetchPosts: function () {
     AppDispatcher.dispatch({
-      actionType: PostConstants.FETCH_POSTS,
-      posts: posts
+      actionType: PostConstants.FETCH_POSTS
     });
   }
 };

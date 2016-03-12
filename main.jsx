@@ -8,8 +8,9 @@ var PostList = require('./components/postList');
 var Main = React.createClass({
   render: function () {
     return(
-      <div className="title">
+      <div className="group">
         <Post />
+        <PostList />
       </div>
     );
   }

@@ -9,15 +9,15 @@ var Post = React.createClass({
     return ({title: "", body: ""});
   },
 
-  signUp: function(e) {
+  addPost: function(e) {
     e.preventDefault();
 
-    var formData = new FormData();
+    // var formData = new FormData();
+    //
+    // formData.append("post[title]", this.state.title);
+    // formData.append("post[body]", this.state.body);
 
-    formData.append("post[title]", this.state.title);
-    formData.append("post[body]", this.state.body);
-
-    PostActions.addPost(formData);
+    PostActions.addPost(this.state.title, this.state.body);
 
     this.clearForm(e);
   },
@@ -29,7 +29,7 @@ var Post = React.createClass({
   render: function () {
 
     return(
-      <div>
+      <div className="post-component">
 
         <h2>Write a post!</h2>
         <form className="form-post" onSubmit={this.addPost}>
@@ -43,15 +43,15 @@ var Post = React.createClass({
 
             </textarea>
 
-          <ul className="form-buttons group">
-            <li className="post-button">
-              <button className="post-button" type="submit">
-                Save
-              </button>
-            </li>
-            <li className="post-button">
+          <ul className="button-list group">
+            <li className="button-item">
               <button className="post-button" onClick={this.clearForm}>
                 Discard
+              </button>
+            </li>
+            <li className="button-item">
+              <button className="post-button" type="submit">
+                Save
               </button>
             </li>
           </ul>

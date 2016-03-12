@@ -23,13 +23,33 @@ body {
   color: #000;
 }
 
+/* --- CLEARFIX --- */
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
 ul {
   list-style: none;
+}
+
+h1 {
+  width: 400px;
+  text-align: center;
+  font-size: 28px;
+  margin: 10px;
 }
 
 h2 {
   font-size: 20px;
   margin: 10px;
+}
+
+div.post-component {
+  float: left;
+  margin: 30px; 
 }
 
 label.post {
@@ -38,6 +58,7 @@ label.post {
 }
 
 input {
+  padding: 5px 10px;
   margin: 10px;
   display: block;
   border: 1px solid #aaa;
@@ -46,10 +67,47 @@ input {
 }
 
 textarea {
+  padding: 5px 10px;
   margin: 10px;
   display: block;
   width: 400px;
   height: 200px;
   border: 1px solid #aaa;
   border-radius: 5px;
+}
+
+.button-list {
+  margin: 10px;
+  width: 420px;
+}
+
+.button-item {
+  float: right;
+  margin-left: 10px;
+}
+
+button.post-button {
+  font-family: 'Raleway', Arial;
+  border-radius: 5px;
+  width: 75px;
+  font-size: 14px;
+  color: #fff;
+  background: #333;
+}
+
+button.post-button:hover {
+  cursor: pointer;
+  color: #333;
+  background: #fff;
+}
+
+.post-list-item {
+  padding: 15px;
+  border: 1px solid #000;
+  margin: 10px;
+  width: 400px;
+}
+
+p.post-body {
+  margin: 10px;
 }
