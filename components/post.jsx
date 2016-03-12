@@ -1,5 +1,7 @@
 var React= require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
+
+var Preview = require('./preview');
 var PostActions = require('../actions/post_actions');
 
 var Post = React.createClass({
@@ -9,7 +11,7 @@ var Post = React.createClass({
     return ({title: "", body: ""});
   },
 
-  addPost: function(e) {
+  addPost: function (e) {
     e.preventDefault();
 
     // var formData = new FormData();
@@ -22,7 +24,8 @@ var Post = React.createClass({
     this.clearForm(e);
   },
 
-  clearForm: function(e) {
+  clearForm: function (e) {
+    e.preventDefault();
     this.setState({title: "", body: ""});
   },
 
@@ -56,6 +59,8 @@ var Post = React.createClass({
             </li>
           </ul>
         </form>
+        <Preview title={this.linkState("title")}
+                  body={this.linkState("body")} />
       </div>
     );
   }
