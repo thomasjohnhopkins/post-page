@@ -1,9 +1,0 @@
-
-DROP TABLE IF EXISTS posts;
-
-CREATE TABLE posts (
-  id INTEGER PRIMARY KEY,
-  title VARCHAR(40) NOT NULL,
-  body VARCHAR(300) NOT NULL
-
-);
