@@ -2,31 +2,61 @@ var React= require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 var Preview = require('./preview');
+var PostUtil = require('../util/post_util');
 var PostActions = require('../actions/post_actions');
+var ActivePostStore = require('../stores/activePost');
 
 var Post = React.createClass({
   mixins: [LinkedStateMixin],
 
   getInitialState: function () {
-    return ({title: "", body: ""});
+    return ({title: "", body: "", activePost: undefined});
   },
 
-  addPost: function (e) {
+  savePost: function (e) {
     e.preventDefault();
 
-    // var formData = new FormData();
-    //
-    // formData.append("post[title]", this.state.title);
-    // formData.append("post[body]", this.state.body);
+    if (this.state.body.length > 300) {
+      return;
+    } else if (this.state.activePost) {
+      PostActions.editPost(this.state.title, this.state.body,
+                            this.state.activePost.id)
+    } else {
+      PostActions.addPost(this.state.title, this.state.body);
+    }
 
-    PostActions.addPost(this.state.title, this.state.body);
-
-    this.clearForm(e);
+    this.clearForm();
   },
 
-  clearForm: function (e) {
+  componentDidMount: function () {
+    this.listenerToken = ActivePostStore.addListener(this._onChange);
+  },
+
+  componentWillUnmount: function () {
+    this.listenerToken.remove();
+  },
+
+  _onChange: function () {
+    var activePost = ActivePostStore.current();
+
+    this.setState({title: activePost.title,
+                    body: activePost.body, activePost: activePost});
+
+  },
+
+  discardPost: function (e) {
     e.preventDefault();
-    this.setState({title: "", body: ""});
+
+    if (this.state.activePost) {
+      PostActions.deletePost(this.state.activePost.id);
+    }
+
+    this.clearForm();
+  },
+
+  clearForm: function () {
+
+    this.setState({title: "", body: "", activePost: undefined});
   },
 
   render: function () {
@@ -35,7 +65,7 @@ var Post = React.createClass({
       <div className="post-component">
 
         <h2>Write a post!</h2>
-        <form className="form-post" onSubmit={this.addPost}>
+        <form className="form-post" onSubmit={this.savePost}>
           <label className="post">Title</label>
           <input type="text" className="title"
             valueLink={this.linkState("title")} />
@@ -48,7 +78,7 @@ var Post = React.createClass({
 
           <ul className="button-list group">
             <li className="button-item">
-              <button className="post-button" onClick={this.clearForm}>
+              <button className="post-button" onClick={this.discardPost}>
                 Discard
               </button>
             </li>

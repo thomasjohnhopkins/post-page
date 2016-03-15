@@ -9,6 +9,27 @@ PostActions = {
     });
   },
 
+  editPost: function (title, body, id) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.EDIT_POST,
+      post: {title: title, body: body, id: id}
+    });
+  },
+
+  selectPost: function (post) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.SET_POST,
+      post: post
+    });
+  },
+
+  deletePost: function (id) {
+    AppDispatcher.dispatch({
+      actionType: PostConstants.DELETE_POST,
+      id: id
+    });
+  },
+
   fetchPosts: function () {
     AppDispatcher.dispatch({
       actionType: PostConstants.FETCH_POSTS

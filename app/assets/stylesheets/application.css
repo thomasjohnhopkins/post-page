@@ -115,6 +115,15 @@ button.post-button:hover {
   width: 400px;
 }
 
+h2.post-title:hover {
+  color: #aaa;
+  cursor: pointer;
+}
+
 p.post-body {
   margin: 10px;
+}
+
+h2.error {
+  color: red;
 }

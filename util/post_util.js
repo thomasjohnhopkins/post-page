@@ -1,21 +1,12 @@
 var PostActions = require('../actions/post_actions');
 
+// var sqlObject = require('../agile_record/sql_object.rb');
+
+
+
 var PostUtil = {
-  addPost: function (post) {
-    $.ajax({
-      type: "POST",
-      url: "postss",
-      processData: false,
-      contentType: false,
-      dataType: 'json',
-      data: formData,
-      success: function (data) {
-        PostActions.addPost(data);
-      },
-      error: function (data) {
-        
-      }
-    });
+  addPost: function (title, body) {
+    debugger
   },
 
   fetchPosts: function () {

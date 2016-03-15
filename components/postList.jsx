@@ -27,6 +27,17 @@ var PostList = React.createClass({
     this.setState(this.getStateFromStore());
   },
 
+  selectPost: function (event) {
+    event.preventDefault();
+
+    var postId = parseInt(event.currentTarget
+              .getAttribute("data-reactid").split("$")[1]);
+
+    var activePost = PostStore.find(postId);
+
+    PostActions.selectPost(activePost);
+  },
+
   render: function () {
 
     if (this.state.posts === undefined) {
@@ -34,13 +45,13 @@ var PostList = React.createClass({
     }
 
     var allPosts = [];
+    var that = this;
 
     if (this.state !== null) {
-      debugger
       this.state.posts.forEach( function (post) {
 
-        allPosts.push(<li className="post-list-item" key={post.title}>
-        <h2>{post.title}</h2>
+        allPosts.push(<li className="post-list-item" key={post.id}>
+        <h2 className="post-title" onClick={that.selectPost}>{post.title}</h2>
         <p className="post-body">{post.body}</p>
       </li>);
       }
