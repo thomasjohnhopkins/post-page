@@ -15,7 +15,8 @@ A static HTML page that allows users to add, edit, and delete posts.
 * Flux
 * HTML/CSS
 
-##Getting Started
-* Clone the repo
-* run `npm start`
+## Getting Started
+* Clone the repo and navigate into post-page folder
+* run `npm install`
+* run `webpack --watch` to initiate bundle.js
 * Open the index.html file in your browser
