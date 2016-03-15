@@ -55,12 +55,12 @@ var Post = React.createClass({
   },
 
   clearForm: function () {
-
     this.setState({title: "", body: "", activePost: undefined});
   },
 
   render: function () {
 
+    var remainingCharacters = 300 - this.state.body.length
     return(
       <div className="post-component">
 
@@ -77,6 +77,9 @@ var Post = React.createClass({
             </textarea>
 
           <ul className="button-list group">
+            <li className="remaining-characters">
+              Remaining Characters: {remainingCharacters}
+            </li>
             <li className="button-item">
               <button className="post-button" onClick={this.discardPost}>
                 Discard

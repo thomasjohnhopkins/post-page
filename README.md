@@ -13,7 +13,6 @@ A static HTML page that allows users to add, edit, and delete posts.
 * Node.js
 * React.js
 * Flux
-* ERB
 * HTML/CSS
 
 ##Getting Started

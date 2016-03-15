@@ -1,6 +1,7 @@
 var React= require('react');
 
 var PostStore = require('../stores/post');
+var ActivePostStore = require('../stores/activePost');
 var PostActions = require('../actions/post_actions');
 
 var PostList = React.createClass({
@@ -9,18 +10,19 @@ var PostList = React.createClass({
   },
 
   getStateFromStore: function () {
-    return {
-      posts: PostStore.all(),
-    };
+    return ({posts: PostStore.all(),
+                    activePost: ActivePostStore.current()});
   },
 
   componentDidMount: function () {
     this.listenerToken = PostStore.addListener(this._onChange);
+    this.activeListener = ActivePostStore.addListener(this._onChange)
     PostActions.fetchPosts();
   },
 
   componentWillUnmount: function () {
     this.listenerToken.remove();
+    this.activeListener.remove();
   },
 
   _onChange: function () {
@@ -49,11 +51,17 @@ var PostList = React.createClass({
 
     if (this.state !== null) {
       this.state.posts.forEach( function (post) {
-
-        allPosts.push(<li className="post-list-item" key={post.id}>
-        <h2 className="post-title" onClick={that.selectPost}>{post.title}</h2>
-        <p className="post-body">{post.body}</p>
-      </li>);
+        if (that.state.activePost.id === post.id) {
+          allPosts.push(<li className="post-list-item active" key={post.id}>
+            <h2 className="post-title" onClick={that.selectPost}>{post.title}</h2>
+            <p className="post-body">{post.body}</p>
+          </li>);
+        } else {
+          allPosts.push(<li className="post-list-item" key={post.id}>
+            <h2 className="post-title" onClick={that.selectPost}>{post.title}</h2>
+            <p className="post-body">{post.body}</p>
+          </li>);
+        }
       }
     )};
 

@@ -7,7 +7,7 @@ var PostList = require('./components/postList');
 var Main = React.createClass({
   render: function () {
     return(
-      <div className="group">
+      <div className="main-container group">
         <Post />
         <PostList />
       </div>

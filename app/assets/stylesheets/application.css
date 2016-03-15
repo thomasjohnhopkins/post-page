@@ -47,6 +47,11 @@ h2 {
   margin: 10px;
 }
 
+div.main-container {
+  width: 1050px;
+  margin: 0 auto;
+}
+
 div.post-component {
   float: left;
   margin: 30px;
@@ -78,7 +83,7 @@ textarea {
   margin: 10px;
   display: block;
   width: 400px;
-  height: 200px;
+  height: 170px;
   border: 1px solid #aaa;
   border-radius: 5px;
 }
@@ -88,6 +93,11 @@ textarea {
   width: 420px;
 }
 
+.remaining-characters {
+  float: left;
+  color: #aaa;
+  font-size: 12px;
+}
 .button-item {
   float: right;
   margin-left: 10px;
@@ -113,6 +123,10 @@ button.post-button:hover {
   border: 1px solid #000;
   margin: 10px;
   width: 400px;
+}
+
+.active {
+  background: #eee;
 }
 
 h2.post-title:hover {

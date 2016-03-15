@@ -41,7 +41,6 @@ PostStore.all = function () {
   if (_posts === undefined) {
     _posts = [];
   }
-  debugger
   return _posts.slice(0);
 };
 
