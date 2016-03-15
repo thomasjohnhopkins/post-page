@@ -28,6 +28,14 @@ ActivePostStore.__onDispatch = function (payload) {
       resetActivePost();
       ActivePostStore.__emitChange();
       break;
+    case PostConstants.ADD_POST:
+      resetActivePost();
+      ActivePostStore.__emitChange();
+      break;
+    case PostConstants.EDIT_POST:
+      resetActivePost();
+      ActivePostStore.__emitChange();
+      break;
   }
 };
 
